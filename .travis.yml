@@ -18,19 +18,16 @@ before_install:
   - chmod +x miniconda.sh
   - ./miniconda.sh -b
   - export PATH=/home/travis/anaconda/bin:$PATH
-  - export PYTHONPATH=$TRAVIS_BUILD_DIR/RMG-Py:$PYTHONPATH
   # Update conda itself
   - conda update --yes conda
-  - cd ..
-  - git clone https://github.com/ReactionMechanismGenerator/RMG-database.git
-  - cd RMG-Py
 
 install:
-  - conda env create 
-  - source activate rmg
-  - make
+  # Install the RMG v0.1.0 binaries
+  - conda install -c rmg -y rmg=0.1.0 rmgdatabase=0.1.0
 
 script: 
-  - make test
-  - make eg1
-  - make eg4
+  # Run unit test suite
+  - nosetests --nocapture --nologcapture --all-modules --verbose --with-coverage --cover-inclusive --cover-package=rmgpy --cover-erase --cover-html --cover-html-dir=testing/coverage --exe rmgpy
+  # Run minimal example
+  - cd examples/rmg/minimal
+  - rmg.py input.py
