@@ -26,8 +26,6 @@ install:
   - conda install -c rmg -y rmg=0.1.0 rmgdatabase=0.1.0
 
 script: 
-  # Run unit test suite
-  - nosetests --nocapture --nologcapture --all-modules --verbose --with-coverage --cover-inclusive --cover-package=rmgpy --cover-erase --cover-html --cover-html-dir=testing/coverage --exe rmgpy
   # Run minimal example
   - cd examples/rmg/minimal
   - rmg.py input.py
