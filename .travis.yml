@@ -23,7 +23,7 @@ before_install:
 
 install:
   # Install the RMG v0.1.0 binaries
-  - conda install -c rmg -y rmg=0.1.0 rmgdatabase=0.1.0
+  - conda install -c rmg -y rmg=1.0.0 rmgdatabase=1.0.0
 
 script: 
   # Run minimal example
